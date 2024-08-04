@@ -49,4 +49,13 @@ go build -o main-linux main.go
 chmod a+x main-linux
 ```
 
+后台运行
+
+```sh
+nohup ./main-linux &
+```
+
 运行即可。
+
+> 可以现在本地运行一遍，测试一下效果。
+> 再部署远程服务器时`storage.json`已有了登录记录了，服务器后台运行时不需要扫码，直接在移动端同意登录即可。
