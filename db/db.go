@@ -10,7 +10,7 @@ var DB *gorm.DB
 
 func init() {
 	var err error
-	DB, err = gorm.Open(sqlite.Open("./db/accountbook.sqlite"), &gorm.Config{
+	DB, err = gorm.Open(sqlite.Open("./accountbook.sqlite"), &gorm.Config{
 		SkipDefaultTransaction: true,
 		NamingStrategy: schema.NamingStrategy{
 			SingularTable: true,
