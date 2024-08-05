@@ -89,6 +89,7 @@ func GetFTTable(msg *openwechat.Message) {
 /* ---------------------------------- 辅助逻辑 ---------------------------------- */
 func getFTTable() string {
 	now := time.Now()
+	now = time.Date(now.Year(), now.Month(), now.Day(), 0, 0, 0, 0, now.Location())
 	weekday := int(now.Weekday())
 	if weekday == 0 {
 		weekday = 7
@@ -96,7 +97,7 @@ func getFTTable() string {
 	offset := weekday - 1
 	monday := now.AddDate(0, 0, -offset)
 	var bills []model.Bill
-	if err := db.DB.Where("Time > ?", monday.Unix()).Find(&bills).Error; err != nil {
+	if err := db.DB.Debug().Where("Time >= ?", monday.Unix()).Find(&bills).Error; err != nil {
 		return "账单查询数据库失败"
 	} else {
 		var temMap = map[string]float64{}
